@@ -1,0 +1,86 @@
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 16) + px;
+	font-size: $sizeValue + rem;
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+@mixin font-title() {
+	text-transform: uppercase;
+	font-size: 150%;
+	font-weight: 100;
+	-webkit-font-smoothing: antialiased;
+}
+
+@mixin simple-button() {
+	position:relative;
+	display: block;
+	margin: 40px auto;
+	border: 2px solid $color__orange;
+	padding: 10px 0;
+	max-width: 210px;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff !important;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s; /* Firefox 4 */
+	-webkit-transition: all 0.5s; /* Safari and Chrome */
+	-o-transition: all 0.5s; /* Opera */
+	z-index: 998;
+	text-transform: uppercase;
+}
+
+@mixin title-border() {
+	width: 60%;
+	height: 1px;
+	margin: 0 auto 30px auto;
+	background-color: #363439;
+}
+
+@mixin title-border-cubes() {
+	content: "";
+	width: 50px;
+	height: 12px;
+	background-size: 38px 12px;
+	background-position: 50%;
+	position: absolute;
+	display: inline-block;
+	margin-top: -6px;
+	margin-left: -25px;
+}
+@mixin title-border-cubes-grey-bg() {
+	@include title-border-cubes();
+	background: $color__background-body url(images/gead-element-yellow.png) no-repeat;
+	background-position: 50%;	
+}
+
+@mixin title-border-cubes-yellow-bg() {
+	@include title-border-cubes();
+	background: $color__background-black url(images/gead-element-yellow.png) no-repeat;
+	background-position: 50%;
+}
+
+@mixin title-border-cubes-white-bg() {
+	@include title-border-cubes();
+	background: $color__background-dark url(images/gead-element-yellow.png) no-repeat;
+	background-position: 50%;
+}
+
+
