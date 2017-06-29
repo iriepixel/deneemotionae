@@ -25,10 +25,10 @@
 			<div class="cell">
 				<div class="social-icons">
 					<div class="container">
-						<a href="https://www.facebook.com/pages/Deneemotion-Contemporary-Wedding-Videography/185826913364" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-fb.png" alt="facebook social icon"></a>
+						<a href="https://www.facebook.com/deneemotion" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-fb.png" alt="facebook social icon"></a>
 						<a href="http://twitter.com/deneemotion" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-twt.png" alt="twitter social icon"></a>
 						<a href="http://vimeopro.com/deneemotion/destination" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-vimeo.png" alt="vimeo social icon"></a>
-						<a href="https://instagram.com/deneemotion_films" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-inst.png" alt="instagram social icon"></a>
+						<a href="https://instagram.com/deneemotion" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-inst.png" alt="instagram social icon"></a>
 						<a href="http://uk.linkedin.com/pub/deneemotion-boutique-wedding-cinema/2a/485/70a" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-flink.png" alt="linkedin social icon"></a>
 						<a href="http://pinterest.com/deneemotion" target="_blank"><img src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/deneemotion/images/soc-pin.png" alt="pinterest social icon"></a>
 					</div>					

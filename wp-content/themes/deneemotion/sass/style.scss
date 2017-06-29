@@ -186,7 +186,7 @@ p
 	width: 100%;
 	max-width: 1880px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0px 20px 20px 20px;
 	@include zen-grid-container; 
 }
 
@@ -306,7 +306,8 @@ p
 
 	nav
 	{
-		background-color: $color__background-black;
+		// background-color: $color__background-black;
+		background-color: rgba(0,0,0,.9);
 		height: 145px;
 		padding: 10px 0;
 
@@ -315,7 +316,7 @@ p
 			display: block;
 			float: left;
 			width: 16.666666667%;
-			background-color: $color__background-black;
+			// background-color: $color__background-black;
 
 			img
 			{
@@ -336,7 +337,7 @@ p
 			{
 				overflow: auto !important;
 				margin-top: 20px !important;
-
+				margin-right: 30px;
 				li
 				{
 					width: -webkit-calc(25% - 25px);
@@ -410,8 +411,8 @@ p
 		h1
 		{
 			padding: 40px 0;
-			margin: 20px;
-			//padding-bottom: 40px;
+			max-width: 900px;
+			margin: 30px auto;
 		}
 
 		.wpcf-field-homepage-intro
@@ -1181,8 +1182,8 @@ footer
 					color: $color__orange;
 					text-decoration: none;
 					display: block;
-					margin-top: 10px;
-					margin-left: -35px;
+					margin-top: 30px;
+					// margin-left: -35px;
 					font-size: 120%;
 
 					transition: all 0.5s;
@@ -1190,14 +1191,14 @@ footer
 					-webkit-transition: all 0.5s; /* Safari and Chrome */
 					-o-transition: all 0.5s; /* Opera */
 
-					span
+					/* span
 					{
-						padding: 0px 0px 0 60px;
+						padding: 0px 0px 0 55px;
 						height: 40px;
 						background: url(images/cont-2.png) no-repeat top left;
 						background-position: 26px 5px;
-						background-size: 26px 20px;
-					}
+						background-size: 26px 16px;
+					} */
 				}
 
 				a:hover
@@ -1383,11 +1384,11 @@ footer
 			{
 				a
 				{
-					span
+					/* span
 					{
 						background-position: 26px 6px !important;
 						background-size: 20px 14px !important;
-					}
+					} */
 				}
 			}
 		}
@@ -1395,7 +1396,9 @@ footer
 }
 
 @media screen and (max-width: 600px) {
-
+	body{
+		font-size: 100%;
+	}
 	h1
 	{
 		font-size: 130% !important;
@@ -1760,6 +1763,13 @@ footer
 		.footer-contact-info
 		{
 			margin: 20px 0 40px 0 !important;
+			.email
+			{
+				a
+				{
+					margin-top: 10px !important;
+				}
+			}
 		}
 
 		.social-icons
@@ -1777,7 +1787,6 @@ footer
 			
 		}
 	}
-
 }
 
 /* loader */

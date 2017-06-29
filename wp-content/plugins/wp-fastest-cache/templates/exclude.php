@@ -91,6 +91,10 @@
 														<select name="wpfc-exclude-rule-prefix">
 															<option selected="" value=""></option>
 															<option value="homepage">Home Page</option>
+															<option value="category">Categories</option>
+															<option value="tag">Tags</option>
+															<option value="post">Posts</option>
+															<option value="page">Pages</option>
 										    				<option value="startwith">Starts With</option>
 										    				<option value="contain">Contains</option>
 										    				<option value="exact">Is Equal To</option>
@@ -176,16 +180,16 @@
 				var clone_modal_id = "wpfc-modal-exclude-" + new Date().getTime();
 
 				clone_modal.find("select").change(function(e){
-					if(jQuery(this).val() == "homepage"){
+					if(jQuery(this).val().match(/^(homepage|category|tag|post|page)$/)){
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").hide();
-						clone_modal.find("input[name='wpfc-exclude-rule-content']").val("home");
+						clone_modal.find("input[name='wpfc-exclude-rule-content']").val(jQuery(this).val());
 					}else{
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").show();
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").val("");
 					}
 				});
 
-				if(e.prefix == "homepage"){
+				if(e.prefix.match(/^(homepage|category|tag|post|page)$/)){
 					clone_modal.find("input[name='wpfc-exclude-rule-content']").hide();
 				}
 
@@ -194,13 +198,25 @@
 				clone_modal.find("input[name='wpfc-exclude-rule-content']").val(jQuery(this).attr("content"));
 				clone_modal.find("input[name='wpfc-exclude-rule-type']").val(jQuery(this).attr("type"));
 
-				if(e.type == "useragent"){
-					clone_modal.find(".wpfc-condition-text").text("If User-Agent");
-				}else if(e.type == "css"){
-					clone_modal.find(".wpfc-condition-text").text("If CSS Url");
-				}else if(e.type == "js"){
-					clone_modal.find(".wpfc-condition-text").text("If JS Url");
+				if(e.type != "page"){
+					if(e.type == "useragent"){
+						clone_modal.find(".wpfc-condition-text").text("If User-Agent");
+					}else if(e.type == "css"){
+						clone_modal.find(".wpfc-condition-text").text("If CSS Url");
+					}else if(e.type == "js"){
+						clone_modal.find(".wpfc-condition-text").text("If JS Url");
+					}else if(e.type == "cookie"){
+						clone_modal.find(".wpfc-condition-text").text("If Cookie");
+					}
+
+					clone_modal.find("select[name='wpfc-exclude-rule-prefix'] option").each(function(){
+						if(this.value != "contain"){
+							jQuery(this).remove();
+						}
+					});
 				}
+				
+
 
 				jQuery("#wpfc-modal-exclude").after(clone_modal);
 
@@ -227,8 +243,6 @@
 								self.save(function(){
 									jQuery("div.wpfc-exclude-item[wpfc-exclude-item-number='" + number + "']").attr("prefix", prefix);
 									jQuery("div.wpfc-exclude-item[wpfc-exclude-item-number='" + number + "']").attr("content", content);
-									// jQuery("div.wpfc-exclude-item[wpfc-exclude-item-number='" + number + "']").find(".wpfc-exclude-item-prefix").text(self.get_text(prefix));
-									// jQuery("div.wpfc-exclude-item[wpfc-exclude-item-number='" + number + "']").find(".wpfc-exclude-item-content").text('"' + content + '"');
 
 									jQuery("div.wpfc-exclude-item[wpfc-exclude-item-number='" + number + "']").find(".wpfc-exclude-item-url").html(self.create_url_description(prefix, content, type));
 									
@@ -259,6 +273,14 @@
 				title = "Contains: " + content;
 			}else if(prefix == "homepage"){
 				title = "Home Page";
+			}else if(prefix == "tag"){
+				title = "Tags";
+			}else if(prefix == "category"){
+				title = "Categories";
+			}else if(prefix == "post"){
+				title = "Posts";
+			}else if(prefix == "page"){
+				title = "Pages";
 			}
 
 			return title;
@@ -279,9 +301,19 @@
 				}
 
 				if(type == "page" || type == "css" || type == "js"){
-					return "<?php echo home_url();?>" + "/" + request_uri;
+					if(prefix.match(/^(homepage|category|tag|post|page)$/)){
+						if(prefix == "homepage"){
+							return "The " + b_start + "homepage" + b_end + " has been excluded";
+						}else{
+							return "All" + " " + b_start + this.create_title(prefix).toLowerCase() + b_end + " " + "have been excluded";
+						}
+					}else{
+						return "<?php echo home_url();?>" + "/" + request_uri;
+					}
 				}else if(type == "useragent"){
 					return "User-Agent: " + request_uri;
+				}else if(type == "cookie"){
+					return "Cookie: " + request_uri;
 				}
 
 		},
@@ -324,6 +356,8 @@
 						clone_modal.find(".wpfc-condition-text").text("If CSS Url");
 					}else if(clone_modal_type == "js"){
 						clone_modal.find(".wpfc-condition-text").text("If JS Url");
+					}else if(clone_modal_type == "cookie"){
+						clone_modal.find(".wpfc-condition-text").text("If Cookie");
 					}
 				}
 
@@ -331,9 +365,9 @@
 
 
 				clone_modal.find("select").change(function(){
-					if(jQuery(this).val() == "homepage"){
+					if(jQuery(this).val().match(/^(homepage|category|tag|post|page)$/)){
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").hide();
-						clone_modal.find("input[name='wpfc-exclude-rule-content']").val("home");
+						clone_modal.find("input[name='wpfc-exclude-rule-content']").val(jQuery(this).val());
 					}else{
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").show();
 						clone_modal.find("input[name='wpfc-exclude-rule-content']").val("");
@@ -423,10 +457,6 @@
 					self.add_item(i + 1, e);
 				});
 			}
-		},
-		get_text: function(value){
-			var obj = {"exact" : "Is Equal To","startwith" : "Starts With","contain" : "Contains", "homepage" : "Home Page"};
-			return obj[value];
 		},
 		is_empty_values: function(prefix, content){
 			if(prefix){

@@ -14,7 +14,7 @@ class crestaShareSocialCount {
 			return 0;
 		}
 		$json = json_decode( $json_string, true );
-		$json_result = (isset($json['count']) ? $json['count'] : 0);
+		$json_result = isset( $json['count'] ) ? intval( $json['count'] ) : 0;
 		return ($json_result) ? $json_result : '0';
 	}
 	function get_facebook($value) {
