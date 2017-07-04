@@ -38,7 +38,7 @@
 
 		<div class="row black copyright">
 			<div class="cell">
-				<div class="container">&copy; <?php echo date("Y"); ?> <a href="http://deneemotion.com" target="_blank">DENEEMOTION</a> | All right reserved<br/>Crafted by <a href="https://iriepixel.com" target="_blank">IRIE PIXEL</a>
+				<div class="container">&copy; <?php echo date("Y"); ?> <a href="http://deneemotion.com" target="_blank">DENEE MOTION</a> | All right reserved<br/>Crafted by <a href="https://iriepixel.com" target="_blank">IRIE PIXEL</a>
 				</div>
 			</div>
 		</div>

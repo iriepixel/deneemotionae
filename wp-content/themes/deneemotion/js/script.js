@@ -10,10 +10,6 @@
             /*alert("I'm IE 8");*/
             window.location.replace("http://deneemotion.ae/update-browser/");
         }
-        else
-        {
-             $(".loader").fadeOut("slow");
-        }
     })
     
     // A $( document ).ready() block.

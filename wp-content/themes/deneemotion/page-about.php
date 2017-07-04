@@ -39,7 +39,7 @@ get_header(); ?>
 					</div>
 				</div>
 
-				<div class="row" style="background-image: url(<?php print($header_image); ?>); background-position: 50% 130%; height: 700px;"></div>
+				<div class="row row--about" style="background-image: url(<?php print($header_image); ?>);"></div>
 
 				<div class="row">
 					<div class="cell">
